@@ -1,0 +1,108 @@
+# License key given to you upon purchase.
+# DO NOT SHARE THIS KEY WITH ANYONE.
+# If your key is suspected to be leaked, it will be invalidated.
+license: LICENSE_KEY
+
+# After every successful snipe, your snipe will be posted on https://betasniper.co/recent.php
+# You can change the display name posted by going here: https://betasniper.co/setname.php
+# BetaSniper does NOT report any of your account information.
+# The only information reported is your license key(which we already have) and the username you sniped.
+report-successful: true
+
+# This is important!
+# After every request, you will notice a "RESULT: Etc etc"
+# If this is set to false, it disables that feature.
+# This is good because when you're using a lot of proxies (more than your max-split-times), 
+#    it actually speeds it up by saving time by not grabbing the response.
+# It will notify you at the end of the snipe if you got the name or not.
+show-concurrent-messages: true
+
+# Latency (in milliseconds) for connecting to server.
+# You should use your ping to the Mojang servers (ping accounts.mojang.com in your server/cmd prompt)
+# If you notice your snipes are too early, lower latency, late, lower.
+latency: 0
+
+# This is after how many seconds will it update you with the "Dropping in.." message
+# If set to 1, it will send the message every second.
+# 15, every 15 seconds, 30, every 30 seconds, 60 every minute, etc.
+drop-time-tracker: 15
+
+# When the console says "Dropping in " make sure this time matches NameMC
+# If it doesn't, edit this. Each second is 1000. So 5 seconds would be 5000. (this is milliseconds)
+# This is usually due to the system clock on your computer, most Windows computers should be fine with 0.
+clock-time-difference: 0
+
+# If your account has security questions, set use to true.
+# The answers go in order from top to bottom of what your questions are.
+security_questions:
+  use: false
+  answer1: 'BetaNyan is a great guy'
+  answer2: 'Also a decent developer if I do say so myself'
+  answer3: 'Contact BetaNyan on Skype epicpengy for custom programs/plugins'
+
+# The milliseconds before the drop when it should attempt a snipe.
+# Must go in descending order.
+# If the time is positive (x>0), then it will be that many milliseconds before the exact drop.
+# If the time is negative (x<0), then it will be that many milliseconds after the exact drop.
+requests:
+- 750
+- 500
+- 250
+- 0
+- -50
+
+# Are you using proxies? (true / false)
+use-proxies: true
+
+# This will remove all proxies that share the same IP, regardless of port.
+# If you want to reuse proxies, modify the proxy-reuse-amount path.
+remove-proxy-dupes: true
+
+# This is the amount that each proxy is used.
+# Maximum amount is 5, if any more, your proxy will most likely get rate-limited, and wouldn't send a successful snipe.
+proxy-reuse-amount: 5
+
+# Should each reused proxy be ran on a new thread?
+# TRUE = Faster, More CPU & Memory Usage
+# FALSE = Less Fast, Less CPU & Memory Usage
+reuse-proxy-multithread: true
+
+# The sniper works by creating a new "thread" for each proxy.
+# This is to increase efficiency and speed of the sniper, while also sacrificing CPU and Memory.
+# If you're using 7000 proxies, on a low-grade server, the sniper will most likely crash.
+# To combat this, I added a system where the threads are split up, reducing the thread count, while
+#       also keeping around the same speed.
+# This number is the maximum amount of proxy requests you have until it will start splitting up the threads.
+# For example, if you use 1000 proxy requests, and your maximum is 500, it will split up the threads.
+# In most cases it's reduced by 1000% (1000 threads -> 100)
+# But if you are using 300 proxy requests, and your max split is set to 500 it will NOT split
+#       up the threads, and continue to use the old system. (300 -> still 300)
+max-proxy-thread-split: 500
+
+# Same exact as the requests, but these requests use proxies.
+# You can not have more proxy-requests than the amount of proxies you have in your proxies.yml
+# Do not set a time here as the same as another time in the normal requests.
+# You can set ranges by using this format [FIRST:LAST]
+# If I do [50:10] it will snipe at every time from 50-10
+# You must surround it with quotes for it to work
+proxy-requests:
+- 800
+- 700
+- 650
+- 600
+- '[599:560]'
+- 550
+- 450
+- 100
+- 5
+- -10
+
+# Your account information and the username you want
+# Email = Email of the account you have access too
+# Password = Password of the account you have access too
+# WantedUsername = Username you are trying to snipe
+# UUID and Drop Time are no longer needed! It is done automatically.
+account:
+  email: myawesome@email.com
+  password: password123
+  wantedUsername: Notch
