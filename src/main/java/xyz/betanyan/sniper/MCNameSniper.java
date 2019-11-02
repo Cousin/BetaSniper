@@ -86,43 +86,6 @@ public class MCNameSniper {
             proxySource = config.getOrDefault("proxy-source", String.class, "stop_decompiling_and_make_your_own_sniper");
 
         }
-
-        System.out.println("Checking license key... ");
-
-        long epoch = System.currentTimeMillis();
-
-        ConnectionBuilder licensePost = new ConnectionBuilder("hidden");
-        licensePost.https(false);
-        licensePost.method("POST");
-        licensePost.data("key=" + config.get("license", String.class) + "&epoch=" + epoch);
-        licensePost.send();
-
-        String response = licensePost.getResponse();
-
-        if (response.contains(";")) {
-
-            String[] split = response.split(";");
-
-            if (split.length == 2) {
-
-                if (split[0].equals(String.valueOf(epoch)) &&
-                        f(split[1]).equals("hidden")) {
-                    System.out.println("License is valid!");
-                } else {
-                    System.out.println("Invalid license! Please purchase a license key from BetaNyan!");
-                    return;
-                }
-
-            } else {
-                System.out.println("Invalid license! Please purchase a license key from BetaNyan!");
-                return;
-            }
-
-        } else {
-            System.out.println("Invalid license! Please purchase a license key from BetaNyan!");
-            return;
-        }
-        
         Object[] data = new Object[6];
         int[] requests = new int[5];
         List<Integer> proxyRequests = new ArrayList<>(config.getOrDefault("proxy-requests", ArrayList.class, new ArrayList()).size());
